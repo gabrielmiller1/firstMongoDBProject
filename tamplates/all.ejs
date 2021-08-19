@@ -10,6 +10,9 @@
 
 <body>
 
+    <h1>Links</h1>
+    <a href="/add">Adicionar Link</a>
+
     <%for (let i=0; i < links.length; i++) { %>
         <div id="<%= links[i]._id %>">
             <form action="/<%= links[i]._id %>?_method=DELETE" method="POST">
