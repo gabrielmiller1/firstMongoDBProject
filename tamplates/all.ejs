@@ -12,35 +12,21 @@
 
     <%for (let i=0; i < links.length; i++) { %>
         <div id="<%= links[i]._id %>">
-            <h2>
-                <%= links[i].title %>
-            </h2>
-            <div>
-                <%= links[i].description %>
-            </div>
-            <div>
-                <%= links[i].url %>
-            </div>
-            <button onclick="deleteLink('<%= links[i]._id %>')">Delete</button>
+            <form action="/<%= links[i]._id %>?_method=DELETE" method="POST">
+                <h2>
+                    <%= links[i].title %>
+                </h2>
+                <div>
+                    <%= links[i].description %>
+                </div>
+                <div>
+                    <%= links[i].url %>
+                </div>
+                <input name="id" value="<%= links[i]._id %>" hidden>
+                <button type="submit">Delete</button>
+            </form>
         </div>
         <% } %>
-
-            <script>
-                function deleteLink(id) {
-                    fetch('/' + id, { method: 'DELETE' }).then(res => {
-
-                        if (res.status == 200) {
-                            res.text().then(linkId => { document.getElementById(linkId).remove(); })
-                        } else {
-                            res.json().then(err => {
-                                console.log(err.message);
-                                alert(err.message);
-                            });
-                        }
-
-                    })
-                }
-            </script>
 </body>
 
 </html>
