@@ -7,30 +7,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Links</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Links</h1>
-    <a href="/add">Adicionar Link</a>
+    <div class="container">
+        <h1>Links</h1>
+        <a class="" href="/add">Adicionar Link</a>
 
-    <%for (let i=0; i < links.length; i++) { %>
-        <div id="<%= links[i]._id %>">
-            <form action="/<%= links[i]._id %>?_method=DELETE" method="POST">
-                <h2>
-                    <%= links[i].title %>
-                </h2>
-                <div>
-                    <%= links[i].description %>
-                </div>
-                <div>
-                    <%= links[i].url %>
-                </div>
-                <input name="id" value="<%= links[i]._id %>" hidden>
-                <button type="submit">Delete</button>
-                <a href="/edit/<%= links[i]._id %>">Edit</a>
-            </form>
-        </div>
-        <% } %>
+        <%for (let i=0; i < links.length; i++) { %>
+            <div class="card p-3 mb-3" id="<%= links[i]._id %>">
+                <form class="d-flex align-items-center justify-content-between"
+                    action="/<%= links[i]._id %>?_method=DELETE" method="POST">
+                    <div class="d-flex flex-column text-capitalize">
+                        <h2>
+                            <%= links[i].title %>
+                        </h2>
+                        <div class="mb-1">
+                            <%= links[i].description %>
+                        </div>
+                        <div class="text-muted mb-1">
+                            <%= links[i].url %>
+                        </div>
+                        <div class="text-success d-flex   align-items-center mb-1">
+                            <i class="material-icons ">
+                                bar_chart
+                            </i>
+                            Clicks: <%= links[i].click %>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <input name="id" value="<%= links[i]._id %>" hidden>
+                        <a class="btn btn-primary mb-1" href="/edit/<%= links[i]._id %>">Edit</a>
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </div>
+                </form>
+            </div>
+            <% } %>
+    </div>
 </body>
 
 </html>
